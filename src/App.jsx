@@ -1,10 +1,18 @@
-function App() {
+import GlobalStyle from "./styles/global";
 
+import Header from "./components/Header";
+
+import { ThemeContextProvider } from "./contexts/ThemeContext";
+
+function App() {
   return (
     <>
-      App
+      <ThemeContextProvider>
+        <Header />
+        <GlobalStyle />
+      </ThemeContextProvider>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
