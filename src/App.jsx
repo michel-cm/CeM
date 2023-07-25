@@ -1,15 +1,16 @@
 import GlobalStyle from "./styles/global";
-
-import Header from "./components/Header";
-
 import { ThemeContextProvider } from "./contexts/ThemeContext";
+import { BrowserRouter } from "react-router-dom";
+import { Router } from "./Router";
 
 function App() {
   return (
     <>
       <ThemeContextProvider>
-        <Header />
-        <GlobalStyle />
+        <BrowserRouter>
+          <Router />
+          <GlobalStyle />
+        </BrowserRouter>
       </ThemeContextProvider>
     </>
   );
