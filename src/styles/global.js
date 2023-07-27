@@ -18,11 +18,17 @@ export default createGlobalStyle`
     }
 
     body {
-        background-color:  ${props => props.theme.colors.background};
+        background-color:  ${(props) => props.theme.colors.background};
         font-size: 14px;
-        color:  ${props => props.theme.colors.text};
+        color:  ${(props) => props.theme.colors.text};
         font-family: sans-serif;
     }
+
+    @media (min-width: 1024px) {
+        body {
+            padding-left: 150px;
+        }
+      }
 
     body, input, textarea, button {
         font-family: 'Roboto', sans-serif;

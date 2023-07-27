@@ -1,7 +1,7 @@
 import * as C from "./styles";
 import ToggleTheme from '../ToggleTheme'
 
-const Header = ( ) => {
+const Header = () => {
 
   return (
     <C.Container>
