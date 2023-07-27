@@ -1,5 +1,6 @@
 import ToggleTheme from "../ToggleTheme";
 import * as C from "./styles";
+import logo from "../../assets/logo-cem.jpeg";
 import { menu } from "../../helpers/menu";
 import { Link } from "react-router-dom";
 import { shade } from "polished";
@@ -26,7 +27,7 @@ const SideBar = () => {
 
   return (
     <C.Container>
-      Logo
+      <img src={logo} alt="" />
       <C.AreaMenuItems>
         {menu.map((item, index) => {
           return (

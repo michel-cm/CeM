@@ -26,7 +26,7 @@ export default createGlobalStyle`
 
     @media (min-width: 1024px) {
         body {
-            padding-left: 150px;
+            
         }
       }
 

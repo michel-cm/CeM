@@ -1,6 +1,6 @@
 import * as C from "./styles";
 
-const Home = ( ) => {
+export const Home = ( ) => {
 
   return (
     <C.Container>
@@ -9,4 +9,3 @@ const Home = ( ) => {
   );
 };
 
-export default Home;
