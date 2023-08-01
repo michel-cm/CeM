@@ -14,7 +14,7 @@ export default createGlobalStyle`
 
     :focus {
         outline: 0;
-        box-shadow: 0 0 0 2px ${(props) => props.theme.secondary};
+        box-shadow: 0 0 0 2px ${(props) => props.theme.colors.secondary};
     }
 
     body {
@@ -23,12 +23,6 @@ export default createGlobalStyle`
         color:  ${(props) => props.theme.colors.text};
         font-family: sans-serif;
     }
-
-    @media (min-width: 1024px) {
-        body {
-            
-        }
-      }
 
     body, input, textarea, button {
         font-family: 'Roboto', sans-serif;

@@ -3,6 +3,7 @@ import { ThemeContextProvider } from "./contexts/ThemeContext";
 import { BrowserRouter } from "react-router-dom";
 import { Router } from "./Router";
 import { AuthContextProvider } from "./contexts/AuthContext";
+import { InventarioContextProvider } from "./contexts/InventarioContext";
 
 function App() {
   return (
@@ -10,8 +11,10 @@ function App() {
       <ThemeContextProvider>
         <BrowserRouter>
           <AuthContextProvider>
-            <Router />
-            <GlobalStyle />
+            <InventarioContextProvider>
+              <Router />
+              <GlobalStyle />
+            </InventarioContextProvider>
           </AuthContextProvider>
         </BrowserRouter>
       </ThemeContextProvider>

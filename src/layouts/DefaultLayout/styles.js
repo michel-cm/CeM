@@ -10,6 +10,11 @@ export const LayoutContainer = styled.div`
   .header-mobile {
     display: none;
   }
+  @media (min-width: 1024px) {
+    & {
+      padding-left: 150px;
+    }
+  }
   @media (max-width: 1023px) {
     .header-mobile {
       display: block;
