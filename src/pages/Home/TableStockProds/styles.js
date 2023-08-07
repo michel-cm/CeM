@@ -7,7 +7,7 @@ export const InventarioList = styled.div`
     props.theme.title === "dark"
       ? "none"
       : "0 50px 50px 0px rgba(0, 0, 0, 0.10)"};
-  padding: 40px 40px 0 40px;
+  padding: 10px 32px 0 32px;
 
   table {
     width: 100%;
@@ -71,7 +71,7 @@ const STATUS_COLORS = {
 export const Status = styled.span`
   display: flex;
   align-items: center;
-
+  
   &::before {
     content: "";
     width: 0.5rem;
