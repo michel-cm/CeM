@@ -1,7 +1,23 @@
 import { SumarryCard, SummaryContainer } from "./styles";
-import {IoAppsSharp, IoFemaleOutline, IoMaleOutline, IoMaleFemaleOutline } from "react-icons/io5";
+import { useInventarioContext } from "../../hooks/useInventarioContext";
+
+import {
+  IoAppsSharp,
+  IoFemaleOutline,
+  IoMaleOutline,
+  IoMaleFemaleOutline,
+} from "react-icons/io5";
 
 export function Summary() {
+  const { products } = useInventarioContext();
+  const prodsFeminino = products.filter(
+    (prod) => prod.categoria === "Feminino"
+  );
+  const prodsMasculino = products.filter(
+    (prod) => prod.categoria === "Masculino"
+  );
+  const prodsUnissex = products.filter((prod) => prod.categoria === "Unissex");
+
   return (
     <SummaryContainer>
       <SumarryCard variant="green">
@@ -10,7 +26,7 @@ export function Summary() {
           <IoAppsSharp size={32} color="#00b37e" />
         </header>
 
-        <strong>{5}</strong>
+        <strong>{products.length}</strong>
       </SumarryCard>
 
       <SumarryCard>
@@ -19,7 +35,7 @@ export function Summary() {
           <IoFemaleOutline size={32} color="#f75a68" />
         </header>
 
-        <strong>{5}</strong>
+        <strong>{prodsFeminino.length}</strong>
       </SumarryCard>
 
       <SumarryCard>
@@ -28,7 +44,7 @@ export function Summary() {
           <IoMaleOutline size={32} color="#408aaa" />
         </header>
 
-        <strong>{5}</strong>
+        <strong>{prodsMasculino.length}</strong>
       </SumarryCard>
       <SumarryCard>
         <header>
@@ -36,7 +52,7 @@ export function Summary() {
           <IoMaleFemaleOutline size={32} color="#F7F7F7" />
         </header>
 
-        <strong>{5}</strong>
+        <strong>{prodsUnissex.length}</strong>
       </SumarryCard>
     </SummaryContainer>
   );

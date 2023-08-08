@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,6 +68,7 @@ export const Modal = styled.div`
   margin: 1rem;
   overflow-y: auto;
   max-height: 90vh;
+  max-width: 740px;
 
   &::-webkit-scrollbar {
     width: 6px; /* Largura da barra de rolagem */
@@ -89,7 +90,7 @@ export const ButtonConfirm = styled.button`
   border: 1px solid transparent;
   padding: 16px;
   border-radius: 4px;
-  background-color: ${(props) => props.theme.colors["green-500"]};
+  background-color: ${(props) => props.theme.colors["green-700"]};
   color: ${(props) => props.theme.colors["gray-100"]};
   width: 180px;
   font-size: 15px;
@@ -98,7 +99,7 @@ export const ButtonConfirm = styled.button`
   margin-right: 16px;
 
   &:hover {
-    background: ${(props) => props.theme.colors["green-700"]};
+    background: ${(props) => props.theme.colors["green-500"]};
   }
   &:disabled {
     background-color: ${(props) => props.theme.colors["gray-800"]};

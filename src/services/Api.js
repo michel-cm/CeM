@@ -47,6 +47,7 @@ export const Api = {
     });
     return list;
   },
+
   addNewProduct: async (prod) => {
     await database.collection("produtos").doc().set({
       cod: prod.cod,
@@ -58,5 +59,9 @@ export const Api = {
       descricao: prod.descricao,
       observacao: prod.observacao,
     });
+  },
+
+  deleteProduct: async (idProduct) => {
+    await deleteDoc(doc(database, "produtos", idProduct));
   },
 };

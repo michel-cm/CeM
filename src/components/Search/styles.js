@@ -3,15 +3,19 @@ import styled from "styled-components";
 export const SearchInput = styled.input`
   border: 0;
   border-radius: 5px;
-  width: 300px;
+  width: 380px;
   height: 50px;
-  background-color: ${(props) => props.theme.colors["gray-800"]};
+  background-color: ${(props) => props.theme.colors["gray-700"]};
   outline: 0;
   padding: 0px 0px 0px 16px;
   color: ${(props) => props.theme.colors["gray-300"]};
-
   font-size: 15px;
-  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.5);
+
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+  }
 `;
 
 export const AreaInput = styled.div`
@@ -21,9 +25,5 @@ export const AreaInput = styled.div`
 
 export const IconSearch = styled.div`
   margin-left: -50px;
-  opacity: 0.8;
-
-  &:hover {
-    opacity: 1;
-  }
+  opacity: 0.7;
 `;

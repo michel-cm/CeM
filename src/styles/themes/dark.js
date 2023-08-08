@@ -9,7 +9,7 @@ export default {
 
     background: "#202024",
     backgroundAside: "#323238",
-    text: "#F8F8F8",
+    text: "#F7F7F7",
     textAside: "#F2F2F2",
 
     //TABLE

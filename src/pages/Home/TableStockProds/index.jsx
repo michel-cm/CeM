@@ -6,8 +6,15 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { BsPencilSquare } from "react-icons/bs";
 
 import { priceFormater } from "../../../helpers/formatter";
+import { useInventarioContext } from "../../../hooks/useInventarioContext";
 
 export function TableStockProds({ itensTemp }) {
+  const { deleteProd } = useInventarioContext();
+
+  async function handleDeleteProd(idProd) {
+    window.confirm("Confirmar exclusão ?") && (await deleteProd(idProd));
+  }
+
   useEffect(() => {
     console.log(itensTemp);
   }, [itensTemp]);
@@ -36,7 +43,6 @@ export function TableStockProds({ itensTemp }) {
 
             <th></th>
             <th></th>
-            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -44,37 +50,26 @@ export function TableStockProds({ itensTemp }) {
             itensTemp.length > 0 &&
             itensTemp.map((item) => {
               return (
-                <tr key={item.cod}>
+                <tr key={item.id}>
                   <td>{item.cod}</td>
                   <td>{item.nome}</td>
                   <td>{priceFormater.format(item.preco)}</td>
                   <td>{item.categoria}</td>
                   <td>{item.tamanho}</td>
-                  <td>{item.estoque}</td>
+                  <td>{item.quantidade}</td>
 
                   <td>
                     {" "}
                     <C.Status
-                      statuscolor={verifyStockColor(item.estoque)}
+                      statuscolor={verifyStockColor(item.quantidade)}
                     ></C.Status>
-                  </td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon>
-                      <BsPencilSquare
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
                   </td>
                   {
                     <td>
                       {" "}
                       <C.AreaIcon>
                         <BsFillEyeFill
+                        title="Ver produto"
                           style={{
                             fontSize: "16px",
                             cursor: "pointer",
@@ -88,6 +83,8 @@ export function TableStockProds({ itensTemp }) {
                     {" "}
                     <C.AreaIcon>
                       <BsFillTrashFill
+                      title="Excluir produto"
+                        onClick={() => handleDeleteProd(item.id)}
                         style={{
                           fontSize: "16px",
                           cursor: "pointer",

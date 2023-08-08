@@ -20,24 +20,39 @@ export const HeaderContent = styled.div`
 `;
 
 export const BtnOpenModalAddProd = styled.button`
-  background: ${(props) => props.theme.colors["green-500"]};
+  background: ${(props) => props.theme.colors["green-700"]};
   border: none;
   border-radius: 4px;
-  padding: 12px 32px;
+  font-weight: 600;
+  padding: 14px 60px;
   color: ${(props) => props.theme.colors["gray-300"]};
   position: fixed;
-  right: 16px;
+  right: 32px;
   bottom: 16px;
   cursor: pointer;
   font-size: 14px;
 
   &:hover {
-    background: ${(props) => props.theme.colors["green-700"]};
+    background: ${(props) => props.theme.colors["green-500"]};
   }
 `;
 
 export const AreaSearch = styled.div`
   padding: 32px 32px 0 32px;
+`;
+
+export const AreaLupaErro = styled.div`
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 48px 0;
+  color: ${(props) => props.theme.colors.text};
+
+  h2 {
+    color: ${(props) => props.theme.colors["gray-300"]};
+  }
 `;
 
 export const AreaPrimeiroProduto = styled.div`

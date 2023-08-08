@@ -21,6 +21,9 @@ export const Container = styled.div`
     color: ${(props) => props.theme.colors.textAside};
     width: 100%;
   }
+  a:focus {
+    box-shadow: none;
+  }
 
   @media (max-width: 1023px) {
     display: none;
