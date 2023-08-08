@@ -15,6 +15,7 @@ export default {
     //TABLE
     th: "#323238",
     td: "#29292E",
+    tdHover: "#29292e56",
 
     "gray-100": "#E1E1E6",
     "gray-300": "#C4C4CC",

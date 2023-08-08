@@ -2,9 +2,10 @@ import { useState } from "react";
 import * as C from "./styles";
 import { BsFillXCircleFill } from "react-icons/bs";
 import { useInventarioContext } from "../../hooks/useInventarioContext";
+import { useEffect } from "react";
 
-export function ModalAddNewProd({ setModal }) {
-  const { addNewProd } = useInventarioContext();
+export function ModalViewProd({ setModal, idProdForView }) {
+  const { products, updateProd } = useInventarioContext();
 
   const [produto, setProduto] = useState({
     cod: "",
@@ -25,9 +26,21 @@ export function ModalAddNewProd({ setModal }) {
     setModal(false);
   };
 
-  async function handleAddNewProd(produto) {
-    await addNewProd(produto);
-  }
+  const getProdForId = () => {
+    const filtered = products.filter((prod) => prod.id == idProdForView);
+    setProduto(filtered[0]);
+  };
+
+  const handleUpdateProd = async () => {
+    await updateProd(idProdForView, produto).then(async () => {
+      setModal(false);
+    });
+  };
+
+  useEffect(() => {
+    console.log(idProdForView);
+    getProdForId();
+  }, [idProdForView]);
 
   return (
     <C.Container onClick={handleCloseModal}>
@@ -41,12 +54,12 @@ export function ModalAddNewProd({ setModal }) {
             }}
           />
         </C.AreaClose>
-        <h3>Cadastrar novo produto</h3>
+        <h3>{produto.nome}</h3>
         <C.AreaInput>
           <input
             type="text"
             placeholder="Nome do Produto"
-            value={produto.nome}
+            value={produto.nome || ""}
             onChange={(e) =>
               setProduto((state) => ({ ...state, nome: e.target.value }))
             }
@@ -55,7 +68,7 @@ export function ModalAddNewProd({ setModal }) {
             <input
               type="text"
               placeholder="Código"
-              value={produto.cod}
+              value={produto.cod || ""}
               onChange={(e) =>
                 setProduto((state) => ({ ...state, cod: e.target.value }))
               }
@@ -63,7 +76,7 @@ export function ModalAddNewProd({ setModal }) {
             <input
               type="number"
               placeholder="Preço do produto"
-              value={produto.preco}
+              value={produto.preco || ""}
               onChange={(e) =>
                 setProduto((state) => ({ ...state, preco: +e.target.value }))
               }
@@ -71,7 +84,7 @@ export function ModalAddNewProd({ setModal }) {
             <input
               type="number"
               placeholder="Quantidade"
-              value={produto.quantidade}
+              value={produto.quantidade || ""}
               onChange={(e) =>
                 setProduto((state) => ({
                   ...state,
@@ -83,7 +96,7 @@ export function ModalAddNewProd({ setModal }) {
           <C.InputRow>
             <C.Select
               default={produto.tamanho === "Tamanho"}
-              value={produto.tamanho}
+              value={produto.tamanho || ""}
               onChange={(e) =>
                 setProduto((state) => ({ ...state, tamanho: e.target.value }))
               }
@@ -99,7 +112,7 @@ export function ModalAddNewProd({ setModal }) {
             </C.Select>
             <C.Select
               default={produto.categoria === "Categoria"}
-              value={produto.categoria}
+              value={produto.categoria || ""}
               onChange={(e) =>
                 setProduto((state) => ({ ...state, categoria: e.target.value }))
               }
@@ -113,7 +126,7 @@ export function ModalAddNewProd({ setModal }) {
           <textarea
             rows="5"
             placeholder="Descrição"
-            value={produto.descricao}
+            value={produto.descricao || ""}
             onChange={(e) =>
               setProduto((state) => ({ ...state, descricao: e.target.value }))
             }
@@ -121,7 +134,7 @@ export function ModalAddNewProd({ setModal }) {
           <textarea
             rows="5"
             placeholder="Observação"
-            value={produto.observacao}
+            value={produto.observacao || ""}
             onChange={(e) =>
               setProduto((state) => ({ ...state, observacao: e.target.value }))
             }
@@ -129,7 +142,7 @@ export function ModalAddNewProd({ setModal }) {
         </C.AreaInput>
         <div>
           <C.ButtonConfirm
-            onClick={() => handleAddNewProd(produto)}
+            onClick={handleUpdateProd}
             disabled={
               produto.nome &&
               produto.quantidade &&
@@ -139,7 +152,7 @@ export function ModalAddNewProd({ setModal }) {
                 : true
             }
           >
-            Adicionar
+            Atualizar
           </C.ButtonConfirm>
           <C.ButtonNot onClick={handleCloseModal} title="Fechar modal">
             Cancelar

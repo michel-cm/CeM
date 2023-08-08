@@ -23,10 +23,12 @@ export function InventarioContextProvider({ children }) {
 
   const deleteProd = async (idProd) => {
     await Api.deleteProduct(idProd).then(() => {
-      setProducts((state) =>
-      state.filter((prod) => prod.id !== idProd)
-      );
+      setProducts((state) => state.filter((prod) => prod.id !== idProd));
     });
+  };
+
+  const updateProd = async (idProd, prod) => {
+    await Api.updateProduct(idProd, prod);
   };
 
   useEffect(() => {
@@ -36,7 +38,9 @@ export function InventarioContextProvider({ children }) {
   }, []);
 
   return (
-    <InventarioContext.Provider value={{ products, addNewProd, deleteProd }}>
+    <InventarioContext.Provider
+      value={{ products, addNewProd, deleteProd, updateProd }}
+    >
       {children}
     </InventarioContext.Provider>
   );

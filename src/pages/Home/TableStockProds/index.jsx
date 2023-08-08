@@ -1,23 +1,21 @@
-import { useEffect } from "react";
 import * as C from "./styles";
 
 import { BsFillEyeFill } from "react-icons/bs";
 import { BsFillTrashFill } from "react-icons/bs";
-import { BsPencilSquare } from "react-icons/bs";
 
 import { priceFormater } from "../../../helpers/formatter";
 import { useInventarioContext } from "../../../hooks/useInventarioContext";
 
-export function TableStockProds({ itensTemp }) {
+export function TableStockProds({ itensTemp, viewProd }) {
   const { deleteProd } = useInventarioContext();
 
   async function handleDeleteProd(idProd) {
     window.confirm("Confirmar exclusão ?") && (await deleteProd(idProd));
   }
 
-  useEffect(() => {
-    console.log(itensTemp);
-  }, [itensTemp]);
+  function handleViewProd(idProd) {
+    viewProd(idProd);
+  }
 
   function verifyStockColor(stock) {
     if (stock > 1) {
@@ -50,7 +48,7 @@ export function TableStockProds({ itensTemp }) {
             itensTemp.length > 0 &&
             itensTemp.map((item) => {
               return (
-                <tr key={item.id}>
+                <C.Line key={item.id}>
                   <td>{item.cod}</td>
                   <td>{item.nome}</td>
                   <td>{priceFormater.format(item.preco)}</td>
@@ -69,7 +67,8 @@ export function TableStockProds({ itensTemp }) {
                       {" "}
                       <C.AreaIcon>
                         <BsFillEyeFill
-                        title="Ver produto"
+                          onClick={() => handleViewProd(item.id)}
+                          title="Ver produto"
                           style={{
                             fontSize: "16px",
                             cursor: "pointer",
@@ -83,7 +82,7 @@ export function TableStockProds({ itensTemp }) {
                     {" "}
                     <C.AreaIcon>
                       <BsFillTrashFill
-                      title="Excluir produto"
+                        title="Excluir produto"
                         onClick={() => handleDeleteProd(item.id)}
                         style={{
                           fontSize: "16px",
@@ -93,7 +92,7 @@ export function TableStockProds({ itensTemp }) {
                       />
                     </C.AreaIcon>
                   </td>
-                </tr>
+                </C.Line>
               );
             })}
         </tbody>

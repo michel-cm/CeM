@@ -64,4 +64,18 @@ export const Api = {
   deleteProduct: async (idProduct) => {
     await deleteDoc(doc(database, "produtos", idProduct));
   },
+
+  updateProduct: async (id, prod) => {
+    const exameRef = doc(database, "produtos", id);
+    await updateDoc(exameRef, {
+      cod: prod.cod,
+      nome: prod.nome,
+      preco: prod.preco,
+      quantidade: prod.quantidade,
+      tamanho: prod.tamanho,
+      categoria: prod.categoria,
+      descricao: prod.descricao,
+      observacao: prod.observacao,
+    });
+  },
 };

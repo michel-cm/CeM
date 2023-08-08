@@ -36,7 +36,6 @@ export const InventarioList = styled.div`
     }
 
     td {
-      background-color: ${(props) => props.theme.colors.td};
       padding: 0.6rem 1rem;
       font-size: 0.875rem;
 
@@ -49,6 +48,14 @@ export const InventarioList = styled.div`
         padding-right: 1rem;
       }
     }
+  }
+`;
+
+export const Line = styled.tr`
+  background-color: ${(props) => props.theme.colors.td};
+
+  &:hover {    
+    background-color: ${(props) => props.theme.colors.tdHover};
   }
 `;
 
@@ -71,7 +78,7 @@ const STATUS_COLORS = {
 export const Status = styled.span`
   display: flex;
   align-items: center;
-  
+
   &::before {
     content: "";
     width: 0.5rem;

@@ -8,12 +8,20 @@ import { useInventarioContext } from "../../hooks/useInventarioContext";
 import { Summary } from "../../components/Summary";
 import { ModalAddNewProd } from "../../components/ModalAddNewProd";
 import { Search } from "../../components/Search";
+import { ModalViewProd } from "../../components/ModalViewProd";
 
 export const Home = () => {
   const [modalAddNewProd, setModalAddNewProd] = useState(false);
+  const [modalViewProd, setModalViewProd] = useState(false);
+  const [idProdForView, setIdProdForView] = useState("");
   const { products } = useInventarioContext();
 
   const [search, setSearch] = useState("");
+
+  function viewProd(idProd) {
+    setIdProdForView(idProd);
+    setModalViewProd(true);
+  }
 
   const filteredList =
     search.length > 0
@@ -42,7 +50,7 @@ export const Home = () => {
 
           {search.length ? (
             filteredList.length ? (
-              <TableStockProds itensTemp={filteredList} />
+              <TableStockProds viewProd={viewProd} itensTemp={filteredList} />
             ) : (
               <C.AreaLupaErro>
                 <h2>Ops, sua busca não encontrou nenhum resultado</h2>
@@ -50,7 +58,7 @@ export const Home = () => {
               </C.AreaLupaErro>
             )
           ) : (
-            <TableStockProds itensTemp={products} />
+            <TableStockProds viewProd={viewProd} itensTemp={products} />
           )}
 
           <C.BtnOpenModalAddProd onClick={() => setModalAddNewProd(true)}>
@@ -69,7 +77,18 @@ export const Home = () => {
         </C.AreaPrimeiroProduto>
       )}
 
-      {modalAddNewProd && <ModalAddNewProd setModal={setModalAddNewProd} />}
+      {modalAddNewProd && (
+        <ModalAddNewProd
+          idProdForView={idProdForView}
+          setModal={setModalAddNewProd}
+        />
+      )}
+      {modalViewProd && (
+        <ModalViewProd
+          idProdForView={idProdForView}
+          setModal={setModalViewProd}
+        />
+      )}
     </C.Container>
   );
 };
