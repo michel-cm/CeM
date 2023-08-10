@@ -29,13 +29,18 @@ export const Container = styled.div`
   textarea {
     resize: none;
   }
+
+  p {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
 `;
 
 export const AreaInput = styled.div`
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1rem;
 `;
 
 export const InputRow = styled.div`

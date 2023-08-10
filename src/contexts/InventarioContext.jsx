@@ -9,6 +9,7 @@ export function InventarioContextProvider({ children }) {
   const [products, setProducts] = useState([]);
 
   const getAllProds = useCallback(async () => {
+    console.log("renderizou");
     await Api.getAllProducts().then((data) => {
       setProducts(data);
     });
@@ -27,15 +28,22 @@ export function InventarioContextProvider({ children }) {
     });
   };
 
-  const updateProd = async (idProd, prod) => {
-    await Api.updateProduct(idProd, prod);
+  const updateProd = async (idProd, updatedProd) => {
+    await Api.updateProduct(idProd, updatedProd).then(() => {
+      setProducts((prevProducts) => {
+        const updatedProducts = prevProducts.map((prod) =>
+          prod.id === idProd ? updatedProd : prod
+        );
+        return updatedProducts;
+      });
+    });
   };
 
   useEffect(() => {
     if (products.length === 0) {
       getAllProds();
     }
-  }, []);
+  });
 
   return (
     <InventarioContext.Provider
