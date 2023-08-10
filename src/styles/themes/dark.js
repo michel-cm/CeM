@@ -5,12 +5,26 @@ export default {
     solid: "#000",
     primary: "#009CDE",
     secundary: "#FF0000",
-    input: "#333",
+    input: "#29292E",
 
     background: "#202024",
     backgroundAside: "#323238",
     text: "#F7F7F7",
     textAside: "#F2F2F2",
+
+    // MODAL
+    modalBg: "#29292E",
+    modalInput: "#121214",
+
+    // HOME
+    headerContent: "#121214",
+
+    // SUMMARY CARD
+    summaryCard: "#323238",
+    summaryCardText: "#C4C4CC",
+
+    // BTN
+    btnVenda: "#3B3E94",
 
     //TABLE
     th: "#323238",

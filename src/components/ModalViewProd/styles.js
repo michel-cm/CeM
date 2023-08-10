@@ -22,7 +22,7 @@ export const Container = styled.div`
     font-size: 0.9rem;
     border: none;
     padding: 0.75rem 1rem;
-    background: ${(props) => props.theme.colors["gray-900"]};
+    background: ${(props) => props.theme.colors.modalInput};
     color: ${(props) => props.theme.colors["gray-300"]};
     width: 100%;
   }
@@ -49,7 +49,7 @@ export const InputRow = styled.div`
 `;
 
 export const Select = styled.select`
-  background: ${(props) => props.theme.colors["gray-900"]};
+  background: ${(props) => props.theme.colors.modalInput};
   border: none;
   padding: 0.75rem 1rem;
   width: 150px;
@@ -66,7 +66,7 @@ export const Select = styled.select`
 `;
 
 export const Modal = styled.div`
-  background-color: ${(props) => props.theme.colors["gray-700"]};
+  background-color: ${(props) => props.theme.colors.modalBg};
   padding: 24px 32px;
   border-radius: 5px;
   width: 60%;

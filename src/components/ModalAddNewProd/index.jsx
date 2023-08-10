@@ -2,6 +2,7 @@ import { useState } from "react";
 import * as C from "./styles";
 import { BsFillXCircleFill } from "react-icons/bs";
 import { useInventarioContext } from "../../hooks/useInventarioContext";
+import { ToastContainer, toast } from "react-toastify";
 
 export function ModalAddNewProd({ setModal }) {
   const { addNewProd } = useInventarioContext();
@@ -17,6 +18,8 @@ export function ModalAddNewProd({ setModal }) {
     observacao: "",
   });
 
+  const [isAdding, setIsAdding] = useState(false);
+
   const handleCloseModal = (event) => {
     if (event.target !== event.currentTarget) {
       return; // Ignorar o fechamento do modal
@@ -25,12 +28,40 @@ export function ModalAddNewProd({ setModal }) {
     setModal(false);
   };
 
+  const notify = () => toast.success("Adicionado com sucesso");
+
   async function handleAddNewProd(produto) {
-    await addNewProd(produto);
+    setIsAdding(true);
+    await addNewProd(produto).then(() => {
+      notify();
+      setIsAdding(false);
+      setProduto({
+        cod: "",
+        nome: "",
+        preco: "",
+        quantidade: "",
+        tamanho: "Tamanho",
+        categoria: "Categoria",
+        descricao: "",
+        observacao: "",
+      });
+    });
   }
 
   return (
     <C.Container onClick={handleCloseModal}>
+      <ToastContainer
+        position="top-left"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <C.Modal className="modal-internal">
         <C.AreaClose>
           <BsFillXCircleFill
@@ -131,15 +162,14 @@ export function ModalAddNewProd({ setModal }) {
           <C.ButtonConfirm
             onClick={() => handleAddNewProd(produto)}
             disabled={
-              produto.nome &&
-              produto.quantidade &&
-              produto.tamanho !== "Tamanho" &&
-              produto.categoria !== "Categoria"
-                ? false
-                : true
+              isAdding ||
+              !produto.nome ||
+              !produto.quantidade ||
+              produto.tamanho === "Tamanho" ||
+              produto.categoria === "Categoria"
             }
           >
-            Adicionar
+            {isAdding ? "Adicionando..." : "Adicionar"}
           </C.ButtonConfirm>
           <C.ButtonNot onClick={handleCloseModal} title="Fechar modal">
             Cancelar

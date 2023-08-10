@@ -9,10 +9,12 @@ import { Summary } from "../../components/Summary";
 import { ModalAddNewProd } from "../../components/ModalAddNewProd";
 import { Search } from "../../components/Search";
 import { ModalViewProd } from "../../components/ModalViewProd";
+import { ModalSell } from "../../components/ModalSell";
 
 export const Home = () => {
   const [modalAddNewProd, setModalAddNewProd] = useState(false);
   const [modalViewProd, setModalViewProd] = useState(false);
+  const [modalSeel, setModalSell] = useState(false);
   const [idProdForView, setIdProdForView] = useState("");
   const { products } = useInventarioContext();
 
@@ -61,6 +63,9 @@ export const Home = () => {
             <TableStockProds viewProd={viewProd} itensTemp={products} />
           )}
 
+          <C.BtnOpenModalVenda onClick={() => setModalSell(true)}>
+            Realizar Venda
+          </C.BtnOpenModalVenda>
           <C.BtnOpenModalAddProd onClick={() => setModalAddNewProd(true)}>
             Novo Produto
           </C.BtnOpenModalAddProd>
@@ -77,16 +82,16 @@ export const Home = () => {
         </C.AreaPrimeiroProduto>
       )}
 
-      {modalAddNewProd && (
-        <ModalAddNewProd
-          idProdForView={idProdForView}
-          setModal={setModalAddNewProd}
-        />
-      )}
+      {modalAddNewProd && <ModalAddNewProd setModal={setModalAddNewProd} />}
       {modalViewProd && (
         <ModalViewProd
           idProdForView={idProdForView}
           setModal={setModalViewProd}
+        />
+      )}
+      {modalSeel && (
+        <ModalSell         
+          setModal={setModalSell}
         />
       )}
     </C.Container>

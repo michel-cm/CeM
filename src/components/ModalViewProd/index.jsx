@@ -3,6 +3,7 @@ import * as C from "./styles";
 import { BsFillXCircleFill } from "react-icons/bs";
 import { useInventarioContext } from "../../hooks/useInventarioContext";
 import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
 export function ModalViewProd({ setModal, idProdForView }) {
   const { products, updateProd } = useInventarioContext();
@@ -15,7 +16,7 @@ export function ModalViewProd({ setModal, idProdForView }) {
     tamanho: "Tamanho",
     categoria: "Categoria",
     descricao: "",
-    observacao: ""
+    observacao: "",
   });
 
   const handleCloseModal = (event) => {
@@ -25,15 +26,15 @@ export function ModalViewProd({ setModal, idProdForView }) {
     event.stopPropagation();
     setModal(false);
   };
-  
+
   const getProdForId = () => {
     const filtered = products.filter((prod) => prod.id == idProdForView);
     setProduto(filtered[0]);
   };
 
   const handleUpdateProd = async () => {
-    await updateProd(idProdForView, produto).then(async () => {
-      
+    await updateProd(idProdForView, produto).then(() => {
+      notify();
     });
   };
 
@@ -42,8 +43,22 @@ export function ModalViewProd({ setModal, idProdForView }) {
     getProdForId();
   }, [idProdForView]);
 
+  const notify = () => toast.success("Atualizado com sucesso");
+
   return (
     <C.Container onClick={handleCloseModal}>
+      <ToastContainer
+        position="top-left"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <C.Modal className="modal-internal">
         <C.AreaClose>
           <BsFillXCircleFill

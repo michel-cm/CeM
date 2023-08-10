@@ -1,7 +1,7 @@
 import { styled, css } from "styled-components";
 
 export const SummaryContainer = styled.section`
-  width: 100%;  
+  width: 100%;
   margin: 0 auto;
   padding: 0 40px;
 
@@ -13,24 +13,31 @@ export const SummaryContainer = styled.section`
 `;
 
 export const SumarryCard = styled.div`
-    background: ${props => props.theme.colors["gray-600"]};
-    border-radius: 6px;
-    padding: 2rem;
+  background: ${(props) => props.theme.colors.summaryCard};
+  border-radius: 6px;
+  padding: 2rem;
 
-    header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        color: ${props => props.theme.colors["gray-300"]};
-    }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: ${(props) => props.theme.colors.summaryCardText};
+  }
 
-    strong {
-        display: block;
-        margin-top: 1rem;
-        font-size: 2rem;
-    }
+  strong {
+    display: block;
+    margin-top: 1rem;
+    font-size: 2rem;
+    color: ${(props) => props.theme.colors.summaryCardText};
+  }
 
-    ${props => props.variant === 'green' && css`
-        background: ${props.theme.colors["green-700"]};
+  ${(props) =>
+    props.variant === "green" &&
+    css`
+      background: ${props.theme.colors["green-700"]};
+      header,
+      strong {
+        color: #fff;
+      }
     `}
 `;

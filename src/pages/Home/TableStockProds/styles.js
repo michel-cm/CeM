@@ -6,7 +6,7 @@ export const InventarioList = styled.div`
   box-shadow: ${(props) =>
     props.theme.title === "dark"
       ? "none"
-      : "0 50px 50px 0px rgba(0, 0, 0, 0.10)"};
+      : "0 50px 50px 0px rgba(0, 0, 0, 0.01)"};
   padding: 10px 32px 0 32px;
 
   table {
@@ -54,7 +54,7 @@ export const InventarioList = styled.div`
 export const Line = styled.tr`
   background-color: ${(props) => props.theme.colors.td};
 
-  &:hover {    
+  &:hover {
     background-color: ${(props) => props.theme.colors.tdHover};
   }
 `;

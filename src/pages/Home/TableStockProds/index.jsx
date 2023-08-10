@@ -5,12 +5,16 @@ import { BsFillTrashFill } from "react-icons/bs";
 
 import { priceFormater } from "../../../helpers/formatter";
 import { useInventarioContext } from "../../../hooks/useInventarioContext";
+import { ToastContainer, toast } from "react-toastify";
 
 export function TableStockProds({ itensTemp, viewProd }) {
   const { deleteProd } = useInventarioContext();
 
   async function handleDeleteProd(idProd) {
-    window.confirm("Confirmar exclusão ?") && (await deleteProd(idProd));
+    window.confirm("Confirmar exclusão ?") &&
+      (await deleteProd(idProd).then(() => {
+        notify();
+      }));
   }
 
   function handleViewProd(idProd) {
@@ -26,8 +30,23 @@ export function TableStockProds({ itensTemp, viewProd }) {
       return "red";
     }
   }
+
+  const notify = () => toast.success("Removido com sucesso");
+
   return (
     <C.InventarioList>
+      <ToastContainer
+        position="top-left"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <table>
         <thead>
           <tr>

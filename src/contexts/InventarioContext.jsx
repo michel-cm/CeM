@@ -9,7 +9,6 @@ export function InventarioContextProvider({ children }) {
   const [products, setProducts] = useState([]);
 
   const getAllProds = useCallback(async () => {
-    console.log("renderizou");
     await Api.getAllProducts().then((data) => {
       setProducts(data);
     });
@@ -43,7 +42,9 @@ export function InventarioContextProvider({ children }) {
     if (products.length === 0) {
       getAllProds();
     }
-  });
+  }, [getAllProds, products]);
+
+  console.log("inventario context execute");
 
   return (
     <InventarioContext.Provider

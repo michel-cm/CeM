@@ -6,7 +6,7 @@ export const Container = styled.div`
 `;
 
 export const HeaderContainer = styled.div`
-  background: ${(props) => props.theme.colors["gray-900"]};
+  background: ${(props) => props.theme.colors.headerContent};
   padding: 2.5rem 0 7.5rem;
 `;
 
@@ -38,12 +38,30 @@ export const BtnOpenModalAddProd = styled.button`
   }
 `;
 
+export const BtnOpenModalVenda = styled.button`
+  background: ${(props) => props.theme.colors.btnVenda};
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  padding: 14px 60px;
+  color: #FFF;
+  position: fixed;
+  right: 260px;
+  bottom: 16px;
+  cursor: pointer;
+  font-size: 14px;
+
+  &:hover {
+    opacity: 0.9;
+  }
+`;
+
 export const AreaSearch = styled.div`
   padding: 32px 32px 0 32px;
 `;
 
 export const AreaLupaErro = styled.div`
-  display: flex; 
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;

@@ -1,5 +1,6 @@
 import { SumarryCard, SummaryContainer } from "./styles";
 import { useInventarioContext } from "../../hooks/useInventarioContext";
+import { useTheme } from "../../hooks/useTheme";
 
 import {
   IoAppsSharp,
@@ -9,6 +10,8 @@ import {
 } from "react-icons/io5";
 
 export function Summary() {
+  const { isDarkTheme } = useTheme();
+
   const { products } = useInventarioContext();
   const prodsFeminino = products.filter(
     (prod) => prod.categoria === "Feminino"
@@ -49,7 +52,10 @@ export function Summary() {
       <SumarryCard>
         <header>
           <span>Unissex</span>
-          <IoMaleFemaleOutline size={32} color="#F7F7F7" />
+          <IoMaleFemaleOutline
+            size={32}
+            color={isDarkTheme === "dark" ? "#F7F7F7" : "#8D8D99"}
+          />
         </header>
 
         <strong>{prodsUnissex.length}</strong>
